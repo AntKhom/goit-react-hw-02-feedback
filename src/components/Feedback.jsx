@@ -8,7 +8,6 @@ export class FeedbackOptions extends Component {
     };
     
     onLeaveFeedback = option => this.setState((prevState) => {
-        console.log(option); 
         return {
              [option]: prevState[option] + 1
          };
@@ -21,7 +20,7 @@ export class FeedbackOptions extends Component {
                     <button
                         key={option}
                         className="btn"
-                        onClick={(evt)=>this.onLeaveFeedback(evt.target.textContent)}>{option}</button>))}
+                        onClick={()=>this.onLeaveFeedback(option)}>{option}</button>))}
                 <h3>Statstics</h3>
                 {this.props.options.map(option => (
                     <p key={option}>{option}:{this.state[option]}</p>))}
