@@ -13,6 +13,20 @@ export class FeedbackOptions extends Component {
          };
     });
 
+    countTotalFeedback = () => {
+        const { Good, Neutral, Bad } = this.state;
+        return Good + Neutral + Bad;
+    }
+    countPositiveFeedbackPercentage = () => {
+        const { Good, Neutral, Bad } = this.state;
+        const total = Good + Neutral + Bad;
+        if (total === 0) {
+            return 0;
+        }
+        return Math.round((Good / total) * 100);
+     }
+        
+
     render() {
             return <div>
                 <h2>Please leave feadback</h2>
@@ -24,6 +38,8 @@ export class FeedbackOptions extends Component {
                 <h3>Statstics</h3>
                 {this.props.options.map(option => (
                     <p key={option}>{option}:{this.state[option]}</p>))}
+                <p>Total:{this.countTotalFeedback()}</p>
+                <p>Positive feedback:{this.countPositiveFeedbackPercentage()}%</p>
             </div>
     }
 
